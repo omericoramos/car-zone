@@ -5,6 +5,7 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
+import EmailIcon from '@/Components/Icons/EmailIcon.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 
 defineProps({
@@ -42,9 +43,11 @@ const submit = () => {
                 <InputLabel for="email" value="Email" />
 
                 <TextInput
+                    :icon = EmailIcon
                     id="email"
                     type="email"
                     class="mt-1 block w-full"
+                    placeholder="exemplo@email.com"
                     v-model="form.email"
                     required
                     autofocus
