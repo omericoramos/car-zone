@@ -15,3 +15,4 @@ class Brand extends Model
         'code'
     ];
 }
+
