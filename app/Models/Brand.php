@@ -11,6 +11,7 @@ class Brand extends Model
     use HasFactory, SoftDeletes;
 
     public $fillable = [
-        'name'
+        'name',
+        'code'
     ];
 }
