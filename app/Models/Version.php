@@ -6,11 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Fuel extends Model
+class Version extends Model
 {
-    use HasFactory, SoftDeletes;
+    use SoftDeletes;
+    use HasFactory;
 
     public $fillable = [
-        'name'
+        'name',
+        'code'
     ];
 }

@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('comissions', function (Blueprint $table) {
+        Schema::create('car_optional', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('sale_id')->constrained();
-            $table->foreignId('employee_id')->constrained();
-            $table->decimal('amount_comission', 8,2);
-            $table->date('payment_date');
-            $table->timestamps();
+            $table->foreignId('car_id')->constrained();
+            $table->foreignId('optional_id')->constrained();
         });
     }
 
@@ -26,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('comissions');
+        Schema::dropIfExists('car_optional');
     }
 };

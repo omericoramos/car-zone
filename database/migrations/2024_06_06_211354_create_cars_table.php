@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('license_plate');
             $table->string('chassis');
-            $table->int('year');
+            $table->string('year');
             $table->decimal('price', 8,2);
             $table->string('color');
             $table->text('description');

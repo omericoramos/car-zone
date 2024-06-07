@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cars_has_optionals', function (Blueprint $table) {
+        Schema::create('versions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('car_id')->constrained();
-            $table->foreignId('optional_id')->constrained();
+            $table->string('name');
+            $table->string('code');
+            $table->timestamps();
         });
     }
 
@@ -23,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cars_has_optionals');
+        Schema::dropIfExists('versions');
     }
 };
