@@ -44,7 +44,7 @@ const submit = () => {
         justify-around items-center">
             <div class="bg-black opacity-20 inset-0 z-0"></div>
 
-            <div class="w-full mx-auto px-20 flex-col items-center space-y-6">
+            <div class="w-auto mx-auto mt-8">
                 <ApplicationLogo class="w-[500px] h-[500px]" color="#FFF" />
             </div>
         </div>
@@ -110,6 +110,8 @@ const submit = () => {
 
 <style scoped>
     .login_img_section {
-        background: url(https://images.pexels.com/photos/248159/pexels-photo-248159.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1) center center;
+        background: url(https://images.pexels.com/photos/248159/pexels-photo-248159.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1) no-repeat center center;
+        background-size: cover;
+        height: 100vh;
     }
 </style>
