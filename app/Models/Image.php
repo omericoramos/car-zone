@@ -4,8 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Image extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
+
+    public $fillable = [
+        'car_id',
+        'path_image'
+    ];
+
+    public function car() {
+        return $this->hasMany(Car::class);
+    }
 }
