@@ -1,10 +1,16 @@
+<script setup>
+const props = defineProps([
+    'color'
+]);
+</script>
+
 <template>
         <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
         width="732.000000pt" height="262.000000pt" viewBox="0 0 732.000000 262.000000"
         preserveAspectRatio="xMidYMid meet">
 
             <g transform="translate(0.000000,262.000000) scale(0.100000,-0.100000)"
-            fill="#000000" stroke="none">
+            :fill="color" stroke="none">
             <path d="M2075 2071 c-190 -47 -339 -175 -425 -365 -135 -298 -70 -664 157
             -876 48 -45 81 -68 158 -109 22 -12 32 -21 23 -21 -38 0 -177 52 -243 91 l-70
             41 -105 -21 c-58 -11 -148 -30 -200 -41 -52 -12 -126 -27 -165 -35 -205 -44
