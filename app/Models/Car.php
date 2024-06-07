@@ -14,7 +14,7 @@ class Car extends Model
         'bodywork_id',
         'engine_id',
         'transmission_id',
-        'models_car_id',
+        'car_model_id',
         'brand_id',
         'fuel_id',
         'status_id',
@@ -39,8 +39,8 @@ class Car extends Model
         return $this->hasMany(Transmission::class);
     }
 
-    public function modelCar() {
-        return $this->belongsTo(ModelCar::class);
+    public function carModel() {
+        return $this->belongsTo(CarModel::class);
     }
 
     public function brand() {
