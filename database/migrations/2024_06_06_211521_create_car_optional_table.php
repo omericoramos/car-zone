@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('car_id')->constrained();
             $table->foreignId('optional_id')->constrained();
+            $table->softDeletes();
         });
     }
 

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('car_id')->constrained();
             $table->string('path_image');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
