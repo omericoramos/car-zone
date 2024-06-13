@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('cep')->nullable();
             $table->string('neighborhood');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

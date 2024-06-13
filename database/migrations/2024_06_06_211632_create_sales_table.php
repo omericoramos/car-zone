@@ -19,6 +19,7 @@ return new class extends Migration
             $table->decimal('sale_price', 8,2);
             $table->string('payment_method');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
