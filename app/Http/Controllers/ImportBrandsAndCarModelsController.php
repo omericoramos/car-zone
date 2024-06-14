@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 class ImportBrandsAndCarModelsController extends Controller
 {
+    // sail art queue:work --timeout=240
     public function import()
     {
         $brands = Brand::all();
