@@ -37,6 +37,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::prefix('/clientes')->group(function(){
         Route::get('/cadastrar',[CustomerController::class,'create'])->name('customers.create');
         Route::post('',[CustomerController::class,'store'])->name('customers.store');
+
     });
 });
 

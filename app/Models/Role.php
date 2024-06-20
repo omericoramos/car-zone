@@ -11,7 +11,11 @@ class Role extends Model
     use HasFactory, SoftDeletes;
 
     public $fillable = [
-        'description',
-        'code'
+        'description'
     ];
+
+    public function permiton()
+    {
+        return $this->hasMany(User::class,'role_id');
+    }
 }
