@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CarController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ImportBrandsAndCarModelsController;
 use App\Http\Controllers\ProfileController;
@@ -28,9 +29,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/import', [ImportBrandsAndCarModelsController::class, 'import'])->name('import');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-    Route::prefix('/carro')->group(function(){
-        Route::get('/criar',[CarController::class,'create'])->name('carro.criar');
-        Route::post('/cadastrar',[CarController::class,'store'])->name('carro.cadastrar');
+    Route::prefix('/carros')->group(function(){
+        Route::get('/cadastrar',[CarController::class,'create'])->name('cars.create');
+        Route::post('',[CarController::class,'store'])->name('cars.store');
+    });
+
+    Route::prefix('/clientes')->group(function(){
+        Route::get('/cadastrar',[CustomerController::class,'create'])->name('customers.create');
+        Route::post('',[CustomerController::class,'store'])->name('customers.store');
     });
 });
 

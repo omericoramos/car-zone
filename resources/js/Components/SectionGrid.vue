@@ -1,8 +1,8 @@
 <template>
-    <div class="pt-28">
-        <div class="flex-wrap max-w-7xl mx-auto sm:px-6 lg:pl-12 lg:pr-0">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg dark:bg-gray-800 dark:border-gray-700">
-                <div class="p-6">
+    <div class="lg:pt-28 pt-24">
+        <div class="flex-wrap max-w-7xl pr-4 mx-auto pl-12 lg:pr-0">
+            <div class="bg-white overflow-hidden lg:shadow-sm sm:rounded-lg dark:bg-gray-800 dark:border-gray-700">
+                <div class="lg:p-6 pl-6">
                     <slot />
                 </div>
             </div>

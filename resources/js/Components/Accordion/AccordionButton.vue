@@ -34,8 +34,8 @@ onMounted(() => {
             class="grid text-sm text-slate-600 overflow-hidden transition-all duration-300 ease-in-out"
             :class="accordionOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'">
             <ul class="overflow-hidden">
-                <LiAccordion link="carro.criar">Cadastrar carro</LiAccordion>
-                <LiAccordion link="carro.criar">Cadastrar cliente</LiAccordion>
+                <LiAccordion link="cars.create">Cadastrar carro</LiAccordion>
+                <LiAccordion link="customers.create">Cadastrar cliente</LiAccordion>
             </ul>
         </div>
     </div>
