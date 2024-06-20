@@ -88,7 +88,7 @@ const submit = () => {
                         <LoginButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing" />
                     </div>
 
-                    <div class="flex justify-between block mt-4">
+                    <div class="flex justify-between mt-4">
                         <label class="flex items-center">
                             <Checkbox name="remember" v-model:checked="form.remember" />
                             <span class="ms-2 text-sm text-gray-600">Lembre-se de mim</span>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CarController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ImportBrandsAndCarModelsController;
 use App\Http\Controllers\ProfileController;
@@ -26,6 +27,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/import', [ImportBrandsAndCarModelsController::class, 'import'])->name('import');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    Route::prefix('/carro')->group(function(){
+        Route::get('/criar',[CarController::class,'create'])->name('carro.criar');
+        Route::post('/cadastrar',[CarController::class,'store'])->name('carro.cadastrar');
+    });
 });
 
 require __DIR__ . '/auth.php';
