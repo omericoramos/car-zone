@@ -31,6 +31,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::prefix('/carros')->group(function(){
         Route::get('/cadastrar',[CarController::class,'create'])->name('cars.create');
+        Route::get('/{brand}',[CarController::class, 'getCarModelsByBrand'])->name('cars.getCarModelsByBrand');
         Route::post('',[CarController::class,'store'])->name('cars.store');
     });
 
