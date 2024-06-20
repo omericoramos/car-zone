@@ -1,6 +1,7 @@
 <script setup>
 import TextInput from '@/Components/TextInput.vue';
 import SelectInput from '@/Components/SelectInput.vue';
+import TextareaInput from '@/Components/TextareaInput.vue';
 import InputError from '@/Components/InputError.vue';
 import CreateCustomerButton from '@/Components/Buttons/CreateCustomerButton.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
@@ -20,6 +21,8 @@ const form = useForm({
     color: '',
     status: '',
     price: '',
+    description: '',
+    message: '',
 });
 
 const submit = () => {
@@ -37,6 +40,7 @@ const submit = () => {
                     idSelect="brand"
                     forLabel="brand"
                     label="Marca"
+                    required
                     v-model="form.brand"
                 >
                     <option selected>Escolha uma marca</option>
@@ -53,6 +57,7 @@ const submit = () => {
                     idInput="title"
                     forLabel="title"
                     label="Título"
+                    required
                     v-model="form.title"
                 />
 
@@ -65,6 +70,7 @@ const submit = () => {
                     idSelect="carModel"
                     forLabel="carModel"
                     label="Modelo"
+                    required
                     v-model="form.carModel"
                 >
                     <option selected>Escolha um modelo</option>
@@ -80,6 +86,7 @@ const submit = () => {
                     idSelect="version"
                     forLabel="version"
                     label="Versão"
+                    required
                     v-model="form.version"
                 >
                     <option selected>Escolha uma versão</option>
@@ -95,6 +102,7 @@ const submit = () => {
                     idSelect="bodyWork"
                     forLabel="bodyWork"
                     label="Carroceria"
+                    required
                     v-model="form.bodyWork"
                 >
                     <option selected>Escolha uma carroceria</option>
@@ -110,6 +118,7 @@ const submit = () => {
                     idSelect="engine"
                     forLabel="engine"
                     label="Motor"
+                    required
                     v-model="form.engine"
                 >
                     <option selected>Escolha um motor</option>
@@ -125,6 +134,7 @@ const submit = () => {
                     idSelect="transmission"
                     forLabel="transmission"
                     label="Transmissão"
+                    required
                     v-model="form.transmission"
                 >
                     <option selected>Escolha uma transmissão</option>
@@ -140,6 +150,7 @@ const submit = () => {
                     idSelect="fuel"
                     forLabel="fuel"
                     label="Combustível"
+                    required
                     v-model="form.fuel"
                 >
                     <option selected>Escolha um tipo de combustível</option>
@@ -156,6 +167,7 @@ const submit = () => {
                     idInput="chassis"
                     forLabel="chassis"
                     label="Chassis"
+                    required
                     v-model="form.chassis"
                 />
 
@@ -169,6 +181,7 @@ const submit = () => {
                     idInput="licencePlate"
                     forLabel="licencePlate"
                     label="Placa"
+                    required
                     v-model="form.licencePlate"
                 />
 
@@ -182,6 +195,7 @@ const submit = () => {
                     idInput="year"
                     forLabel="year"
                     label="Ano"
+                    required
                     v-model="form.year"
                 />
 
@@ -194,6 +208,7 @@ const submit = () => {
                     idSelect="color"
                     forLabel="color"
                     label="Cor"
+                    required
                     v-model="form.color"
                 >
                     <option selected>Escolha uma cor</option>
@@ -210,12 +225,21 @@ const submit = () => {
                     idInput="price"
                     forLabel="price"
                     label="Preço"
+                    required
                     v-model="form.price"
                 />
 
                 <InputError class="mt-2" :message="form.errors.price" />
             </div>
         </div>
+            
+        <TextareaInput
+            label="Digite a descrição do carro aqui..."
+            rows="4"
+            v-model="form.description"
+        />
+
+        <InputError class="mt-2" :message="form.errors.description" />
 
         <div class="mt-4">
             <CreateCustomerButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing" />

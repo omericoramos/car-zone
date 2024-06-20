@@ -36,6 +36,8 @@ onMounted(() => {
             <ul class="overflow-hidden">
                 <LiAccordion link="cars.create">Cadastrar carro</LiAccordion>
                 <LiAccordion link="customers.create">Cadastrar cliente</LiAccordion>
+                <LiAccordion link="employees.create">Cadastrar funcionário</LiAccordion>
+                <LiAccordion link="positions.create">Cadastrar cargo</LiAccordion>
             </ul>
         </div>
     </div>

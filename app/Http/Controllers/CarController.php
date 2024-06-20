@@ -13,7 +13,7 @@ class CarController extends Controller
 
     public function index()
     {
-        return view('cars.index');
+        return view('cars.list');
     }
 
     public function create()
