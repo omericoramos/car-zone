@@ -11,41 +11,40 @@ class StoreModelCarActions
 {
     public static function storeCarModelData(): void
     {
-       $brands = GetBranDataActions::getAllBrand();       
+        $brands = GetBranDataActions::getAllBrand();
 
-       if($brands){
+        if ($brands) {
             foreach ($brands as $brand) {
 
                 $allModelsCar = ConsultModelsCarService::getAllModelsCarOfBrand($brand['code']);
 
-                if ($allModelsCar) {
+                if (isset($allModelsCar['modelos'])) {
 
-                    self::storeData($allModelsCar);
+                    self::storeData($allModelsCar['modelos'], $brand['id']);
                 }
             }
-       }        
+        }
     }
 
-    public static function storeData(array $allModelsCar)
+    private static function storeData(array $allModelsCar, int $brandId)
     {
         $carName = [];
         $carNameStore = [];
         $carVersion = [];
 
-        if(isset($allModelsCar['modelos'])){
-           
-            foreach ($allModelsCar['modelos'] as $key => $modelCar) {
+        foreach ($allModelsCar as $key => $modelCar) {
 
-                $name = current(explode(' ', $modelCar['nome']));
+            $name = current(explode(' ', $modelCar['nome']));
 
-                if (!in_array($name, $carName)) {
-                    $carName[$key] = $name;
-                    $carNameStore[$key] = ['name' => $name];
-                }
-                $carVersion[$key] = ['name' => $modelCar['nome'], 'code' => $modelCar['codigo']];
+            if (!in_array($name, $carName)) {
+                $carName[$key] = $name;
+                $carNameStore[$key] = ['name' => $name, 'brand_id' => $brandId];
             }
-            CarModel::insert($carNameStore);
-            Version::insert($carVersion);
+
+            $carVersion[$key] = ['name' => $modelCar['nome'], 'code' => $modelCar['codigo']];
         }
+
+        CarModel::insert($carNameStore);
+        Version::insert($carVersion);
     }
 }

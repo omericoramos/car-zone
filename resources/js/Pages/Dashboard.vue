@@ -10,8 +10,6 @@ import SectionGrid from '@/Components/SectionGrid.vue';
     <Head title="Página inicial" />
 
     <AuthenticatedLayout>
-        <!-- <template #header></template> -->
-
         <SectionGrid>Página inicial</SectionGrid>
     </AuthenticatedLayout>
 </template>
