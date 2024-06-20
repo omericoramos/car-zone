@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CarController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ImportBrandsAndCarModelsController;
 use App\Http\Controllers\ProfileController;
@@ -31,6 +32,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::prefix('/carros')->group(function(){
         Route::get('/cadastrar',[CarController::class,'create'])->name('cars.create');
         Route::post('',[CarController::class,'store'])->name('cars.store');
+    });
+
+    Route::prefix('/clientes')->group(function(){
+        Route::get('/cadastrar',[CustomerController::class,'create'])->name('customers.create');
+        Route::post('',[CustomerController::class,'store'])->name('customers.store');
+
     });
 });
 
