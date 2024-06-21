@@ -108,6 +108,18 @@ const submit = () => {
 
                 <InputError class="mt-2" :message="form.errors.position" />
             </div>
+            
+            <div>
+                <ZipcodeInput
+                    nameInput="zipcode"
+                    idInput="zipcode"
+                    forLabel="zipcode"
+                    label="Cep"
+                    v-model="form.zipcode"
+                />
+
+                <InputError class="mt-2" :message="form.errors.zipcode" />
+            </div>
 
             <div>
                 <TextInput
@@ -167,18 +179,6 @@ const submit = () => {
                 />
 
                 <InputError class="mt-2" :message="form.errors.citie" />
-            </div>
-
-            <div>
-                <ZipcodeInput
-                    nameInput="zipcode"
-                    idInput="zipcode"
-                    forLabel="zipcode"
-                    label="Cep"
-                    v-model="form.zipcode"
-                />
-
-                <InputError class="mt-2" :message="form.errors.zipcode" />
             </div>
         </div>
 
