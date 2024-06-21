@@ -1,10 +1,10 @@
 <script setup>
 import Checkbox from '@/Components/Checkbox.vue';
 import GuestLayout from '@/Layouts/GuestLayout.vue';
-import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
+import InputError from '@/Components/Inputs/InputError.vue';
+import InputLabel from '@/Components/Inputs/InputLabel.vue';
+import TextInput from '@/Components/Inputs/TextInput.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
 import LoginButton from '@/Components/Buttons/LoginButton.vue';
 import ApplicationLogo from '@/Components/ApplicationLogo.vue'
 import { Head, Link, useForm } from '@inertiajs/vue3';
@@ -32,7 +32,7 @@ const submit = () => {
 </script>
 
 <template>
-    <Head title="Log in" />
+    <Head title="Entrar" />
 
     <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
         {{ status }}

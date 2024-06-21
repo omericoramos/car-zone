@@ -20,7 +20,7 @@ defineExpose({ focus: () => input.value.focus() });
 </script>
 
 <template>
-    <div class="mt-4">
+    <div class="mt-8">
         <div class="relative w-full">
             <textarea
                 id="textarea"

@@ -1,6 +1,9 @@
 <script setup>
-import TextInput from '@/Components/TextInput.vue';
-import InputError from '@/Components/InputError.vue';
+import TextInput from '@/Components/Inputs/TextInput.vue';
+import InputError from '@/Components/Inputs/InputError.vue';
+import PhoneInput from '@/Components/Inputs/PhoneInput.vue';
+import NumberInput from '@/Components/Inputs/NumberInput.vue';
+import ZipcodeInput from '@/Components/Inputs/ZipcodeInput.vue';
 import CreateCustomerButton from '@/Components/Buttons/CreateCustomerButton.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 
@@ -24,16 +27,14 @@ const submit = () => {
 
 <template>
     <!-- Form -->
-    <form @submit.prevent="submit" class="bg-white max-w-lg mx-auto">
+    <form @submit.prevent="submit" class="bg-white max-w-2xl mx-auto">
         <div class="grid md:grid-cols-2 md:gap-6">
             <div>
-                <TextInput 
-                    typeInput="text"
+                <TextInput
                     nameInput="name"
                     idInput="name"
                     forLabel="name"
                     label="Digite o primeiro nome"
-                    required
                     v-model="form.name"
                 />
 
@@ -41,8 +42,7 @@ const submit = () => {
             </div>
 
             <div>
-                <TextInput 
-                    typeInput="text"
+                <TextInput
                     nameInput="lastname"
                     idInput="lastname"
                     forLabel="lastname"
@@ -67,14 +67,11 @@ const submit = () => {
             </div>
 
             <div>
-                <TextInput 
-                    typeInput="tel"
+                <PhoneInput
                     nameInput="phone"
                     idInput="phone"
                     forLabel="phone"
                     label="Digite o telefone"
-                    pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                    required
                     v-model="form.phone"
                 />
 
@@ -83,12 +80,10 @@ const submit = () => {
 
             <div>
                 <TextInput
-                    typeInput="text"
                     nameInput="street"
                     idInput="street"
                     forLabel="street"
                     label="Rua"
-                    required
                     v-model="form.street"
                 />
 
@@ -96,8 +91,7 @@ const submit = () => {
             </div>
 
             <div>
-                <TextInput
-                    typeInput="text"
+                <NumberInput
                     nameInput="number"
                     idInput="number"
                     forLabel="number"
@@ -110,7 +104,6 @@ const submit = () => {
 
             <div>
                 <TextInput
-                    typeInput="text"
                     nameInput="complement"
                     idInput="complement"
                     forLabel="complement"
@@ -123,12 +116,10 @@ const submit = () => {
 
             <div>
                 <TextInput
-                    typeInput="text"
                     nameInput="neighborhood"
                     idInput="neighborhood"
                     forLabel="neighborhood"
                     label="Bairro"
-                    required
                     v-model="form.neighborhood"
                 />
 
@@ -137,12 +128,10 @@ const submit = () => {
 
             <div>
                 <TextInput
-                    typeInput="text"
                     nameInput="citie"
                     idInput="citie"
                     forLabel="citie"
                     label="Cidade"
-                    required
                     v-model="form.citie"
                 />
 
@@ -150,8 +139,7 @@ const submit = () => {
             </div>
 
             <div>
-                <TextInput
-                    typeInput="text"
+                <ZipcodeInput
                     nameInput="zipcode"
                     idInput="zipcode"
                     forLabel="zipcode"

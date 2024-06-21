@@ -9,6 +9,10 @@ defineProps([
     'idSelect'
 ]);
 
+const model = defineModel({
+    required: true,
+});
+
 onMounted(() => {
     initFlowbite();
 });
@@ -24,6 +28,7 @@ defineExpose({ focus: () => input.value.focus() });
             :name="nameSelect"
             :id="idSelect"
             class="block py-2.5 px-1 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            v-model="model"
         >
             <slot />
         </select>

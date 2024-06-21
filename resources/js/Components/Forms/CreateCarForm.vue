@@ -1,8 +1,11 @@
 <script setup>
-import TextInput from '@/Components/TextInput.vue';
-import SelectInput from '@/Components/SelectInput.vue';
-import TextareaInput from '@/Components/TextareaInput.vue';
-import InputError from '@/Components/InputError.vue';
+import TextInput from '@/Components/Inputs/TextInput.vue';
+import SelectInput from '@/Components/Inputs/SelectInput.vue';
+import TextareaInput from '@/Components/Inputs/TextareaInput.vue';
+import ImageInput from '@/Components/Inputs/ImageInput.vue';
+import InputError from '@/Components/Inputs/InputError.vue';
+import NumberInput from '@/Components/Inputs/NumberInput.vue';
+import PriceInput from '@/Components/Inputs/PriceInput.vue';
 import CreateCustomerButton from '@/Components/Buttons/CreateCustomerButton.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 
@@ -23,6 +26,7 @@ const form = useForm({
     price: '',
     description: '',
     message: '',
+    images: '',
 });
 
 const submit = () => {
@@ -32,7 +36,7 @@ const submit = () => {
 
 <template>
     <!-- Form -->
-    <form @submit.prevent="submit" class="bg-white max-w-lg mx-auto">
+    <form @submit.prevent="submit" class="bg-white max-w-2xl mx-auto">
         <div class="grid md:grid-cols-2 md:gap-6">
             <div>
                 <SelectInput
@@ -40,7 +44,6 @@ const submit = () => {
                     idSelect="brand"
                     forLabel="brand"
                     label="Marca"
-                    required
                     v-model="form.brand"
                 >
                     <option selected>Escolha uma marca</option>
@@ -51,13 +54,11 @@ const submit = () => {
             </div>
 
             <div>
-                <TextInput 
-                    typeInput="text"
+                <TextInput
                     nameInput="title"
                     idInput="title"
                     forLabel="title"
                     label="Título"
-                    required
                     v-model="form.title"
                 />
 
@@ -70,7 +71,6 @@ const submit = () => {
                     idSelect="carModel"
                     forLabel="carModel"
                     label="Modelo"
-                    required
                     v-model="form.carModel"
                 >
                     <option selected>Escolha um modelo</option>
@@ -86,7 +86,6 @@ const submit = () => {
                     idSelect="version"
                     forLabel="version"
                     label="Versão"
-                    required
                     v-model="form.version"
                 >
                     <option selected>Escolha uma versão</option>
@@ -102,7 +101,6 @@ const submit = () => {
                     idSelect="bodyWork"
                     forLabel="bodyWork"
                     label="Carroceria"
-                    required
                     v-model="form.bodyWork"
                 >
                     <option selected>Escolha uma carroceria</option>
@@ -118,7 +116,6 @@ const submit = () => {
                     idSelect="engine"
                     forLabel="engine"
                     label="Motor"
-                    required
                     v-model="form.engine"
                 >
                     <option selected>Escolha um motor</option>
@@ -134,7 +131,6 @@ const submit = () => {
                     idSelect="transmission"
                     forLabel="transmission"
                     label="Transmissão"
-                    required
                     v-model="form.transmission"
                 >
                     <option selected>Escolha uma transmissão</option>
@@ -150,7 +146,6 @@ const submit = () => {
                     idSelect="fuel"
                     forLabel="fuel"
                     label="Combustível"
-                    required
                     v-model="form.fuel"
                 >
                     <option selected>Escolha um tipo de combustível</option>
@@ -162,12 +157,10 @@ const submit = () => {
 
             <div>
                 <TextInput
-                    typeInput="text"
                     nameInput="chassis"
                     idInput="chassis"
                     forLabel="chassis"
                     label="Chassis"
-                    required
                     v-model="form.chassis"
                 />
 
@@ -176,12 +169,10 @@ const submit = () => {
 
             <div>
                 <TextInput
-                    typeInput="text"
                     nameInput="licencePlate"
                     idInput="licencePlate"
                     forLabel="licencePlate"
                     label="Placa"
-                    required
                     v-model="form.licencePlate"
                 />
 
@@ -189,13 +180,12 @@ const submit = () => {
             </div>
 
             <div>
-                <TextInput
-                    typeInput="text"
+                <NumberInput
+                    typeInput="number"
                     nameInput="year"
                     idInput="year"
                     forLabel="year"
                     label="Ano"
-                    required
                     v-model="form.year"
                 />
 
@@ -208,7 +198,6 @@ const submit = () => {
                     idSelect="color"
                     forLabel="color"
                     label="Cor"
-                    required
                     v-model="form.color"
                 >
                     <option selected>Escolha uma cor</option>
@@ -219,18 +208,25 @@ const submit = () => {
             </div>
 
             <div>
-                <TextInput
-                    typeInput="text"
+                <PriceInput
                     nameInput="price"
                     idInput="price"
                     forLabel="price"
                     label="Preço"
-                    required
                     v-model="form.price"
                 />
 
                 <InputError class="mt-2" :message="form.errors.price" />
             </div>
+        </div>
+
+        <div>
+            <ImageInput
+                type="file"
+                v-model="form.images"
+            />
+
+            <InputError class="mt-2" :message="form.errors.images" />
         </div>
             
         <TextareaInput
