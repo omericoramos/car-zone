@@ -31,9 +31,5 @@ class CarController extends Controller
         // Handle the form submission for creating a new car
     }
 
-    public function getCarModelsByBrand(Brand $brand)
-    {
-        $listCarModels = GetCarModelDataAction::getCarModelByBrand($brand->id);
-        return $listCarModels;
-    }
+   
 }

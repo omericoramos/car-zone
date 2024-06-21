@@ -4,6 +4,7 @@ use App\Models\Brand;
 use App\Models\Car;
 use App\Models\CarModel;
 use App\Models\User;
+use App\Models\Version;
 
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\get;
@@ -55,12 +56,27 @@ it('deve listar todos os modelos de carros da marca selecionada', function () {
     actingAs($user);
 
     $brand = Brand::factory()->create();
-    get(route('cars.getCarModelsByBrand', $brand))->assertSuccessful();
+    get(route('cars.getCarModelsByBrand', ['brand' => $brand->id]))->assertSuccessful();
 });
 
 it('deve listar todas as versões do modelo selecionado', function () {
-    //expect()->
-})->todo();
+    $user = User::factory()->create();
+
+    actingAs($user);
+
+    $brand = Brand::factory()->create();
+
+    $carModels = CarModel::factory()->create([
+        'name' => fake()->name('gol'),
+        'brand_id' => $brand->id
+    ]);
+
+    $versions = Version::factory(10)->create([
+        'name' => $carModels->name.''. fake()->name()
+    ]);
+    
+    get(route('cars.getVersionsByCarModel', ['model' => $carModels->name]))->assertSuccessful();
+});
 
 it('deve listar todos as carrocerias cadastrados', function () {
     //expect()->

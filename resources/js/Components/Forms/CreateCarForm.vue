@@ -3,10 +3,12 @@ import TextInput from '@/Components/TextInput.vue';
 import SelectInput from '@/Components/SelectInput.vue';
 import InputError from '@/Components/InputError.vue';
 import CreateCustomerButton from '@/Components/Buttons/CreateCustomerButton.vue';
+import { ref } from 'vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
+import axios from 'axios';
 
 defineProps(['brands'])
-
+const carModels = ref(null)
 const form = useForm({
     brand: '',
     title: '',
@@ -27,6 +29,22 @@ const form = useForm({
 const submit = () => {
     form.post(route('customers.store'));
 };
+
+const filterCarmodels = (event) => {
+    const getCarModelsByBrand = async () => {
+        const response = await axios.get(route('cars.getCarModelsByBrand'), {
+            params: {
+                brand: event
+            }
+        })
+
+        return response.data
+    }
+
+    getCarModelsByBrand().then((data) =>{
+        carModels.value = data
+    })
+}
 </script>
 
 <template>
@@ -34,7 +52,8 @@ const submit = () => {
     <form @submit.prevent="submit" class="bg-white max-w-lg mx-auto">
         <div class="grid md:grid-cols-2 md:gap-6">
             <div>
-                <SelectInput nameSelect="brand" idSelect="brand" forLabel="brand" label="Marca" v-model="form.brand">
+                <SelectInput nameSelect="brand" idSelect="brand" forLabel="brand" label="Marca" v-model="form.brand"
+                    @change="filterCarmodels($event.target.value)">
                     <option selected>Escolha uma marca</option>
                     <option v-for="brand in brands" :key="brand.id" v-bind:value="brand.id">
                         {{ brand.name }}
@@ -55,7 +74,9 @@ const submit = () => {
                 <SelectInput nameSelect="carModel" idSelect="carModel" forLabel="carModel" label="Modelo"
                     v-model="form.carModel">
                     <option selected>Escolha um modelo</option>
-                    <option value="">Nissan</option>
+                    <option v-for="carModel in carModels":key="carModel.id" >
+                        {{ carModel.name }}
+                    </option>
                 </SelectInput>
 
                 <InputError class="mt-2" :message="form.errors.name" />

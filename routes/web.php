@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\CarController;
+use App\Http\Controllers\CarModel\VersionController;
+use App\Http\Controllers\CarModelController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ImportBrandsAndCarModelsController;
@@ -31,8 +33,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::prefix('/carros')->group(function(){
         Route::get('/cadastrar',[CarController::class,'create'])->name('cars.create');
-        Route::get('/{brand}',[CarController::class, 'getCarModelsByBrand'])->name('cars.getCarModelsByBrand');
         Route::post('',[CarController::class,'store'])->name('cars.store');
+    });
+
+    Route::prefix('/modelos')->group(function(){
+        Route::get('', [CarModelController::class, 'getCarModelsByBrand'])->name('cars.getCarModelsByBrand');
+
+    });
+
+    Route::prefix('/versoes')->group(function(){
+        Route::get('', [VersionController::class, 'getVersionsByCarModel'])->name('cars.getVersionsByCarModel');
     });
 
     Route::prefix('/clientes')->group(function(){
@@ -40,6 +50,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('',[CustomerController::class,'store'])->name('customers.store');
 
     });
+
 });
 
 require __DIR__ . '/auth.php';
