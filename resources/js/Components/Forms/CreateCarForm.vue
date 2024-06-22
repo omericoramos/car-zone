@@ -1,7 +1,11 @@
 <script setup>
-import TextInput from '@/Components/TextInput.vue';
-import SelectInput from '@/Components/SelectInput.vue';
-import InputError from '@/Components/InputError.vue';
+import TextInput from '@/Components/Inputs/TextInput.vue';
+import SelectInput from '@/Components/Inputs/SelectInput.vue';
+import TextareaInput from '@/Components/Inputs/TextareaInput.vue';
+import ImageInput from '@/Components/Inputs/ImageInput.vue';
+import InputError from '@/Components/Inputs/InputError.vue';
+import NumberInput from '@/Components/Inputs/NumberInput.vue';
+import PriceInput from '@/Components/Inputs/PriceInput.vue';
 import CreateCustomerButton from '@/Components/Buttons/CreateCustomerButton.vue';
 import { ref } from 'vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
@@ -25,6 +29,9 @@ const form = useForm({
     color: '',
     status: '',
     price: '',
+    description: '',
+    message: '',
+    images: '',
 });
 
 const submit = () => {
@@ -66,7 +73,7 @@ const filterVersionsCar = (carModel) => {
 
 <template>
     <!-- Form -->
-    <form @submit.prevent="submit" class="bg-white max-w-lg mx-auto">
+    <form @submit.prevent="submit" class="bg-white max-w-2xl mx-auto">
         <div class="grid md:grid-cols-2 md:gap-6">
             <div>
                 <SelectInput nameSelect="brand" idSelect="brand" forLabel="brand" label="Marca" v-model="form.brand"
@@ -81,8 +88,14 @@ const filterVersionsCar = (carModel) => {
             </div>
 
             <div>
-                <TextInput typeInput="text" nameInput="title" idInput="title" forLabel="title" label="Título"
-                    v-model="form.title" />
+                <TextInput
+                    nameInput="title"
+                    idInput="title"
+                    forLabel="title"
+                    label="Título"
+                    v-model="form.title"
+                />
+
 
                 <InputError class="mt-2" :message="form.errors.title" />
             </div>
@@ -151,22 +164,44 @@ const filterVersionsCar = (carModel) => {
             </div>
 
             <div>
-                <TextInput typeInput="text" nameInput="chassis" idInput="chassis" forLabel="chassis" label="Chassis"
-                    v-model="form.chassis" />
+
+                <TextInput
+                    nameInput="chassis"
+                    idInput="chassis"
+                    forLabel="chassis"
+                    label="Chassis"
+                    v-model="form.chassis"
+                />
+
 
                 <InputError class="mt-2" :message="form.errors.chassis" />
             </div>
 
             <div>
-                <TextInput typeInput="text" nameInput="licencePlate" idInput="licencePlate" forLabel="licencePlate"
-                    label="Placa" v-model="form.licencePlate" />
+
+                <TextInput
+                    nameInput="licencePlate"
+                    idInput="licencePlate"
+                    forLabel="licencePlate"
+                    label="Placa"
+                    v-model="form.licencePlate"
+                />
+
 
                 <InputError class="mt-2" :message="form.errors.licencePlate" />
             </div>
 
             <div>
-                <TextInput typeInput="text" nameInput="year" idInput="year" forLabel="year" label="Ano"
-                    v-model="form.year" />
+
+                <NumberInput
+                    typeInput="number"
+                    nameInput="year"
+                    idInput="year"
+                    forLabel="year"
+                    label="Ano"
+                    v-model="form.year"
+                />
+
 
                 <InputError class="mt-2" :message="form.errors.year" />
             </div>
@@ -181,12 +216,36 @@ const filterVersionsCar = (carModel) => {
             </div>
 
             <div>
-                <TextInput typeInput="text" nameInput="price" idInput="price" forLabel="price" label="Preço"
-                    v-model="form.price" />
+
+                <PriceInput
+                    nameInput="price"
+                    idInput="price"
+                    forLabel="price"
+                    label="Preço"
+                    v-model="form.price"
+                />
+
 
                 <InputError class="mt-2" :message="form.errors.price" />
             </div>
         </div>
+
+        <div>
+            <ImageInput
+                type="file"
+                v-model="form.images"
+            />
+
+            <InputError class="mt-2" :message="form.errors.images" />
+        </div>
+            
+        <TextareaInput
+            label="Digite a descrição do carro aqui..."
+            rows="4"
+            v-model="form.description"
+        />
+
+        <InputError class="mt-2" :message="form.errors.description" />
 
         <div class="mt-4">
             <CreateCustomerButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing" />

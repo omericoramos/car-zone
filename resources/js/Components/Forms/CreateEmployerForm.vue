@@ -1,14 +1,16 @@
 <script setup>
 import TextInput from '@/Components/Inputs/TextInput.vue';
+import SelectInput from '@/Components/Inputs/SelectInput.vue';
 import InputError from '@/Components/Inputs/InputError.vue';
 import PhoneInput from '@/Components/Inputs/PhoneInput.vue';
+import PriceInput from '@/Components/Inputs/PriceInput.vue';
 import NumberInput from '@/Components/Inputs/NumberInput.vue';
 import ZipcodeInput from '@/Components/Inputs/ZipcodeInput.vue';
 import CreateCustomerButton from '@/Components/Buttons/CreateCustomerButton.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 
 const form = useForm({
-    name: '',
+    firstname: '',
     lastname: '',
     email: '',
     phone: '',
@@ -18,6 +20,8 @@ const form = useForm({
     neighborhood: '',
     citie: '',
     zipcode: '',
+    salary: '',
+    position: '',
 });
 
 const submit = () => {
@@ -31,14 +35,14 @@ const submit = () => {
         <div class="grid md:grid-cols-2 md:gap-6">
             <div>
                 <TextInput
-                    nameInput="name"
-                    idInput="name"
-                    forLabel="name"
+                    nameInput="firstname"
+                    idInput="firstname"
+                    forLabel="firstname"
                     label="Digite o primeiro nome"
-                    v-model="form.name"
+                    v-model="form.firstname"
                 />
 
-                <InputError class="mt-2" :message="form.errors.name" />
+                <InputError class="mt-2" :message="form.errors.firstname" />
             </div>
 
             <div>
@@ -54,7 +58,7 @@ const submit = () => {
             </div>
 
             <div>
-                <TextInput 
+                <TextInput
                     typeInput="email"
                     nameInput="email"
                     idInput="email"
@@ -78,6 +82,33 @@ const submit = () => {
                 <InputError class="mt-2" :message="form.errors.phone" />
             </div>
 
+            <div>
+                <PriceInput
+                    nameInput="salary"
+                    idInput="salary"
+                    forLabel="salary"
+                    label="Digite o salário"
+                    v-model="form.salary"
+                />
+
+                <InputError class="mt-2" :message="form.errors.salary" />
+            </div>
+
+            <div>
+                <SelectInput 
+                    nameSelect="position"
+                    idSelect="position"
+                    forLabel="position"
+                    label="Escolha o cargo"
+                    v-model="form.position"
+                >
+                    <option selected>Selecione um cargo</option>
+                    <option value="1">Gerente</option>
+                </SelectInput>
+
+                <InputError class="mt-2" :message="form.errors.position" />
+            </div>
+            
             <div>
                 <ZipcodeInput
                     nameInput="zipcode"

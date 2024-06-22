@@ -6,9 +6,12 @@ use App\Http\Controllers\CarModel\VersionController;
 use App\Http\Controllers\CarModelController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EmployerController;
 use App\Http\Controllers\EngineController;
 use App\Http\Controllers\FuelController;
+
 use App\Http\Controllers\ImportBrandsAndCarModelsController;
+use App\Http\Controllers\PositionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TransmissionController;
 use Illuminate\Foundation\Application;
@@ -68,7 +71,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::prefix('/clientes')->group(function(){
         Route::get('/cadastrar',[CustomerController::class,'create'])->name('customers.create');
         Route::post('',[CustomerController::class,'store'])->name('customers.store');
+    });
 
+    Route::prefix('/funcionarios')->group(function(){
+        Route::get('/cadastrar',[EmployerController::class,'create'])->name('employees.create');
+        Route::post('',[EmployerController::class,'store'])->name('employees.store');
+    });
+
+    Route::prefix('/cargos')->group(function(){
+        Route::get('/cadastrar',[PositionController::class,'create'])->name('positions.create');
+        Route::post('',[PositionController::class,'store'])->name('positions.store');
     });
 
 });
