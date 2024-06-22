@@ -7,6 +7,7 @@ use App\Http\Controllers\CarModelController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EngineController;
+use App\Http\Controllers\FuelController;
 use App\Http\Controllers\ImportBrandsAndCarModelsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TransmissionController;
@@ -58,6 +59,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::prefix('/transmissoes')->group(function(){
         Route::get('', [TransmissionController::class, 'index'])->name('transmissions.index');
+    });
+
+    Route::prefix('/combustiveis')->group(function(){
+        Route::get('', [FuelController::class, 'index'])->name('fuels.index');
     });
 
     Route::prefix('/clientes')->group(function(){
