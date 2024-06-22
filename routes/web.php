@@ -9,6 +9,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EngineController;
 use App\Http\Controllers\ImportBrandsAndCarModelsController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TransmissionController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -51,8 +52,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('', [BodyWorkController::class, 'index'])->name('bodyWorks.index');
     });
 
-    Route::prefix('/motorizacao')->group(function(){
+    Route::prefix('/motorizacoes')->group(function(){
         Route::get('', [EngineController::class, 'index'])->name('engines.index');
+    });
+
+    Route::prefix('/transmissoes')->group(function(){
+        Route::get('', [TransmissionController::class, 'index'])->name('transmissions.index');
     });
 
     Route::prefix('/clientes')->group(function(){

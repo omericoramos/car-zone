@@ -5,6 +5,7 @@ use App\Models\Brand;
 use App\Models\Car;
 use App\Models\CarModel;
 use App\Models\Engine;
+use App\Models\Transmission;
 use App\Models\User;
 use App\Models\Version;
 
@@ -102,8 +103,14 @@ it('deve listar todos os motores cadastrados', function () {
 });
 
 it('deve listar todas as transmissões cadastrados', function () {
-    //expect()->
-})->todo();
+    $user = User::factory()->create();
+
+    actingAs($user);
+
+    Transmission::factory(10)->create();
+
+    get(route('transmissions.index'))->assertSuccessful();
+});
 
 it('deve listar todos os tipos de combustível cadastrados', function () {
     //expect()->
