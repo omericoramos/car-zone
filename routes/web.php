@@ -1,10 +1,16 @@
 <?php
 
+use App\Http\Controllers\BodyWorkController;
 use App\Http\Controllers\CarController;
+use App\Http\Controllers\CarModel\VersionController;
+use App\Http\Controllers\CarModelController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EngineController;
+use App\Http\Controllers\FuelController;
 use App\Http\Controllers\ImportBrandsAndCarModelsController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TransmissionController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -34,11 +40,37 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('',[CarController::class,'store'])->name('cars.store');
     });
 
+    Route::prefix('/modelos')->group(function(){
+        Route::get('', [CarModelController::class, 'getCarModelsByBrand'])->name('cars.getCarModelsByBrand');
+
+    });
+
+    Route::prefix('/versoes')->group(function(){
+        Route::get('', [VersionController::class, 'getVersionsByCarModel'])->name('cars.getVersionsByCarModel');
+    });
+
+    Route::prefix('/carrocerias')->group(function(){
+        Route::get('', [BodyWorkController::class, 'index'])->name('bodyWorks.index');
+    });
+
+    Route::prefix('/motorizacoes')->group(function(){
+        Route::get('', [EngineController::class, 'index'])->name('engines.index');
+    });
+
+    Route::prefix('/transmissoes')->group(function(){
+        Route::get('', [TransmissionController::class, 'index'])->name('transmissions.index');
+    });
+
+    Route::prefix('/combustiveis')->group(function(){
+        Route::get('', [FuelController::class, 'index'])->name('fuels.index');
+    });
+
     Route::prefix('/clientes')->group(function(){
         Route::get('/cadastrar',[CustomerController::class,'create'])->name('customers.create');
         Route::post('',[CustomerController::class,'store'])->name('customers.store');
 
     });
+
 });
 
 require __DIR__ . '/auth.php';
