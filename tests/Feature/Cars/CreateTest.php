@@ -4,6 +4,7 @@ use App\Models\BodyWork;
 use App\Models\Brand;
 use App\Models\Car;
 use App\Models\CarModel;
+use App\Models\Engine;
 use App\Models\User;
 use App\Models\Version;
 
@@ -91,8 +92,14 @@ it('deve listar todos as carrocerias cadastradas', function () {
 });
 
 it('deve listar todos os motores cadastrados', function () {
-    
-})->todo();
+    $user = User::factory()->create();
+
+    actingAs($user);
+
+    Engine::factory(10)->create();
+
+    get(route('engines.index'))->assertSuccessful();
+});
 
 it('deve listar todas as transmissões cadastrados', function () {
     //expect()->

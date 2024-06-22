@@ -6,6 +6,7 @@ use App\Http\Controllers\CarModel\VersionController;
 use App\Http\Controllers\CarModelController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EngineController;
 use App\Http\Controllers\ImportBrandsAndCarModelsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -51,7 +52,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 
     Route::prefix('/motorizacao')->group(function(){
-        Route::get('', [VersionController::class, 'index'])->name('egines.index');
+        Route::get('', [EngineController::class, 'index'])->name('engines.index');
     });
 
     Route::prefix('/clientes')->group(function(){
