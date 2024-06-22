@@ -9,6 +9,7 @@ import axios from 'axios';
 
 defineProps(['brands'])
 const carModels = ref(null)
+const versions = ref(null)
 const form = useForm({
     brand: '',
     title: '',
@@ -41,8 +42,24 @@ const filterCarmodels = (event) => {
         return response.data
     }
 
-    getCarModelsByBrand().then((data) =>{
+    getCarModelsByBrand().then((data) => {
         carModels.value = data
+    })
+}
+
+const filterVersionsCar = (carModel) => {
+    const getVersionsCar = async () => {
+        const response = await axios.get(route('cars.getVersionsByCarModel'), {
+            params: {
+                carModel: carModel
+            }
+        })
+
+        return response.data
+    }
+
+    getVersionsCar().then((data) => {
+        versions.value = data
     })
 }
 </script>
@@ -72,9 +89,9 @@ const filterCarmodels = (event) => {
 
             <div>
                 <SelectInput nameSelect="carModel" idSelect="carModel" forLabel="carModel" label="Modelo"
-                    v-model="form.carModel">
+                    v-model="form.carModel" @change="filterVersionsCar($event.target.value)">
                     <option selected>Escolha um modelo</option>
-                    <option v-for="carModel in carModels":key="carModel.id" >
+                    <option v-for="carModel in carModels" :key="carModel.id" v-bind:value="carModel.name">
                         {{ carModel.name }}
                     </option>
                 </SelectInput>
@@ -86,7 +103,9 @@ const filterCarmodels = (event) => {
                 <SelectInput nameSelect="version" idSelect="version" forLabel="version" label="Versão"
                     v-model="form.version">
                     <option selected>Escolha uma versão</option>
-                    <option value="">Nissan</option>
+                    <option v-for="version in versions" :key="version.id" v-bind:value="version.id">
+                        {{ version.name }}
+                    </option>
                 </SelectInput>
 
                 <InputError class="mt-2" :message="form.errors.version" />

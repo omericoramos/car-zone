@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BodyWorkController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\CarModel\VersionController;
 use App\Http\Controllers\CarModelController;
@@ -43,6 +44,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::prefix('/versoes')->group(function(){
         Route::get('', [VersionController::class, 'getVersionsByCarModel'])->name('cars.getVersionsByCarModel');
+    });
+
+    Route::prefix('/carrocerias')->group(function(){
+        Route::get('', [BodyWorkController::class, 'index'])->name('bodyWorks.index');
+    });
+
+    Route::prefix('/motorizacao')->group(function(){
+        Route::get('', [VersionController::class, 'index'])->name('egines.index');
     });
 
     Route::prefix('/clientes')->group(function(){

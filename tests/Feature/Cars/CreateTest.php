@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\BodyWork;
 use App\Models\Brand;
 use App\Models\Car;
 use App\Models\CarModel;
@@ -72,18 +73,25 @@ it('deve listar todas as versões do modelo selecionado', function () {
     ]);
 
     $versions = Version::factory(10)->create([
-        'name' => $carModels->name.''. fake()->name()
+        'name' => $carModels->name . '' . fake()->name()
     ]);
-    
-    get(route('cars.getVersionsByCarModel', ['model' => $carModels->name]))->assertSuccessful();
+
+    get(route('cars.getVersionsByCarModel', ['carModel' => $carModels->name]))->assertSuccessful();
 });
 
-it('deve listar todos as carrocerias cadastrados', function () {
-    //expect()->
-})->todo();
+it('deve listar todos as carrocerias cadastradas', function () {
+
+    $user = User::factory()->create();
+
+    actingAs($user);
+
+    BodyWork::factory(10)->create();
+
+    get(route('bodyWorks.index'))->assertSuccessful();
+});
 
 it('deve listar todos os motores cadastrados', function () {
-    //expect()->
+    
 })->todo();
 
 it('deve listar todas as transmissões cadastrados', function () {
