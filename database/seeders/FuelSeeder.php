@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Fuel;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class FuelSeeder extends Seeder
@@ -14,9 +13,10 @@ class FuelSeeder extends Seeder
     public function run(): void
     {
         Fuel::insert([
-            ['id' => 1, 'name' => 'Galosina'],
-            ['id' => 2, 'name' => 'Diesel'],
-            ['id' => 3, 'name' => 'Alcool'],
+            ['id' => 1, 'name' => 'Flex'],
+            ['id' => 2, 'name' => 'Galosina'],
+            ['id' => 3, 'name' => 'Diesel'],
+            ['id' => 4, 'name' => 'Alcool'],
         ]);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\brand\GetBranDataActions;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -19,11 +20,14 @@ class CarController extends Controller
     public function create()
     {
         $this->authorize('create', User::class);
-        return Inertia::render('Cars/Create');
+        $brands = GetBranDataActions::execute();
+        return Inertia::render('Cars/Create', compact('brands'));
     }
 
     public function store(Request $request)
     {
         // Handle the form submission for creating a new car
     }
+
+   
 }

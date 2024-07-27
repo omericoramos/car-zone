@@ -6,8 +6,12 @@ use App\Models\Brand;
 
 class GetBranDataActions
 {
-    public static function getAllBrand()
+    public static function execute(): array
     {
-       return Brand::all();
+       return Brand::all([
+        'id as id',
+        'name as name',
+        'code as code'
+       ])->toArray();
     }
 }
