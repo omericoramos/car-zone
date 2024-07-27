@@ -14,7 +14,6 @@ defineProps(['brands'])
     <AuthenticatedLayout>
         <SectionGrid>
             <Title title="Cadastrar carro" />
-            
             <CreateCarForm :brands="brands" />
         </SectionGrid>
     </AuthenticatedLayout>

@@ -20,7 +20,6 @@ return new class extends Migration
             $table->foreignId('fuel_id')->constrained();
             $table->foreignId('status_car_id')->constrained();
             $table->foreignId('version_id')->constrained();
-            $table->string('title');
             $table->string('license_plate');
             $table->string('chassis');
             $table->string('year');
