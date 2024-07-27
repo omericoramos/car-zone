@@ -7,6 +7,7 @@ import InputError from '@/Components/Inputs/InputError.vue';
 import NumberInput from '@/Components/Inputs/NumberInput.vue';
 import PriceInput from '@/Components/Inputs/PriceInput.vue';
 import CreateCustomerButton from '@/Components/Buttons/CreateCustomerButton.vue';
+import { useForm } from '@inertiajs/vue3';
 import { ref, onMounted } from 'vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 import axios from 'axios';
@@ -18,6 +19,7 @@ const bodyWorks = ref(null)
 const enginesType = ref(null)
 const fuelsType = ref(null)
 const transmissionsType = ref(null)
+
 
 const form = useForm({
     brand: '',
@@ -36,7 +38,8 @@ const form = useForm({
     price: '',
     description: '',
     message: '',
-    images: '',
+    images: [],
+    document: null,
 });
 
 const submit = () => {
@@ -129,7 +132,7 @@ onMounted(() => {
 
 <template>
     <!-- Form -->
-    <form @submit.prevent="submit" class="bg-white max-w-2xl mx-auto">
+    <form @submit.prevent="submit" class="bg-white max-w-2xl mx-auto" enctype="multipart/form-data">
         <div class="grid md:grid-cols-2 md:gap-6">
             <div>
                 <SelectInput nameSelect="brand" idSelect="brand" forLabel="brand" label="Marca" v-model="form.brand"
@@ -265,12 +268,40 @@ onMounted(() => {
         </div>
 
         <div>
-            <ImageInput type="file" v-model="form.images" />
+
+            <p class="text-base text-gray-700 mt-2 dark:text-white">Imagens do carro</p>
+            <ImageInput
+                type="file"
+                forLabel="images"
+                idInput="images"
+                textSpan="Clique para carregar imagens"
+                typeFile="SVG, PNG, JPG"
+                multiple
+                v-model="form.images"
+            />
 
             <InputError class="mt-2" :message="form.errors.images" />
         </div>
 
-        <TextareaInput label="Digite a descrição do carro aqui..." rows="4" v-model="form.description" />
+        <div>
+            <p class="text-base text-gray-700 mt-4 dark:text-white">Documento do carro</p>
+            <ImageInput
+                type="file"
+                forLabel="document"
+                idInput="document"
+                textSpan="Clique para carregar arquivo"
+                typeFile="PDF, PNG, JPG"
+                v-model="form.document"
+            />
+
+            <InputError class="mt-2" :message="form.errors.document" />
+        </div>
+            
+        <TextareaInput
+            label="Digite a descrição do carro aqui..."
+            rows="4"
+            v-model="form.description"
+        />
 
         <InputError class="mt-2" :message="form.errors.description" />
 

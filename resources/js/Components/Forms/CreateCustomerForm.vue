@@ -4,6 +4,8 @@ import InputError from '@/Components/Inputs/InputError.vue';
 import PhoneInput from '@/Components/Inputs/PhoneInput.vue';
 import NumberInput from '@/Components/Inputs/NumberInput.vue';
 import ZipcodeInput from '@/Components/Inputs/ZipcodeInput.vue';
+import ImageInput from '@/Components/Inputs/ImageInput.vue';
+import TextareaInput from '@/Components/Inputs/TextareaInput.vue';
 import CreateCustomerButton from '@/Components/Buttons/CreateCustomerButton.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 
@@ -18,6 +20,9 @@ const form = useForm({
     neighborhood: '',
     citie: '',
     zipcode: '',
+    identification: null,
+    address: null,
+    proof: [],
 });
 
 const submit = () => {
@@ -27,7 +32,7 @@ const submit = () => {
 
 <template>
     <!-- Form -->
-    <form @submit.prevent="submit" class="bg-white max-w-2xl mx-auto">
+    <form @submit.prevent="submit" class="bg-white max-w-2xl mx-auto" enctype="multipart/form-data">
         <div class="grid md:grid-cols-2 md:gap-6">
             <div>
                 <TextInput
@@ -150,6 +155,55 @@ const submit = () => {
                 <InputError class="mt-2" :message="form.errors.citie" />
             </div>
         </div>
+
+        <div>
+            <p class="text-base text-gray-700 mt-2 dark:text-white">Imagem RG</p>
+            <ImageInput
+                type="file"
+                forLabel="identification"
+                idInput="identification"
+                textSpan="Clique para carregar imagem"
+                typeFile="SVG, PNG, JPG"
+                v-model="form.identification"
+            />
+
+            <InputError class="mt-2" :message="form.errors.identification" />
+        </div>
+
+        <div>
+            <p class="text-base text-gray-700 mt-4 dark:text-white">Imagem comprovante de endereço</p>
+            <ImageInput
+                type="file"
+                forLabel="address"
+                idInput="address"
+                textSpan="Clique para carregar imagem"
+                typeFile="SVG, PNG, JPG"
+                v-model="form.address"
+            />
+
+            <InputError class="mt-2" :message="form.errors.address" />
+        </div>
+
+        <div>
+            <p class="text-base text-gray-700 mt-4 dark:text-white">Imagens comprovante de renda</p>
+            <ImageInput
+                type="file"
+                forLabel="proof"
+                idInput="proof"
+                textSpan="Clique para carregar imagens"
+                typeFile="SVG, PNG, JPG"
+                multiple
+                v-model="form.proof"
+            />
+
+            <InputError class="mt-2" :message="form.errors.proof" />
+        </div>
+
+        <TextareaInput
+            label="Observações do cliente aqui..."
+            rows="4"
+            v-model="form.description"
+        />
 
         <div class="mt-4">
             <CreateCustomerButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing" />
