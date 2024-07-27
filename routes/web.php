@@ -40,6 +40,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::prefix('/carros')->group(function(){
         Route::get('/cadastrar',[CarController::class,'create'])->name('cars.create');
+        Route::get('/listar',[CarController::class,'index'])->name('cars.list');
         Route::post('',[CarController::class,'store'])->name('cars.store');
     });
 
@@ -70,11 +71,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::prefix('/clientes')->group(function(){
         Route::get('/cadastrar',[CustomerController::class,'create'])->name('customers.create');
+        Route::get('/listar',[CustomerController::class,'index'])->name('customers.list');
         Route::post('',[CustomerController::class,'store'])->name('customers.store');
     });
 
     Route::prefix('/funcionarios')->group(function(){
         Route::get('/cadastrar',[EmployerController::class,'create'])->name('employees.create');
+        Route::get('/listar',[EmployerController::class,'index'])->name('employees.list');
         Route::post('',[EmployerController::class,'store'])->name('employees.store');
     });
 

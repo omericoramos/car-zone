@@ -1,16 +1,16 @@
 <script setup>
 import TextInput from '@/Components/Inputs/TextInput.vue';
-import SelectInput from '@/Components/Inputs/SelectInput.vue';
 import InputError from '@/Components/Inputs/InputError.vue';
 import PhoneInput from '@/Components/Inputs/PhoneInput.vue';
-import PriceInput from '@/Components/Inputs/PriceInput.vue';
 import NumberInput from '@/Components/Inputs/NumberInput.vue';
 import ZipcodeInput from '@/Components/Inputs/ZipcodeInput.vue';
+import ImageInput from '@/Components/Inputs/ImageInput.vue';
+import TextareaInput from '@/Components/Inputs/TextareaInput.vue';
 import CreateCustomerButton from '@/Components/Buttons/CreateCustomerButton.vue';
 import { useForm } from '@inertiajs/vue3';
 
 const form = useForm({
-    firstname: '',
+    name: '',
     lastname: '',
     email: '',
     phone: '',
@@ -20,8 +20,9 @@ const form = useForm({
     neighborhood: '',
     citie: '',
     zipcode: '',
-    salary: '',
-    position: '',
+    identification: null,
+    address: null,
+    proof: [],
 });
 
 const submit = () => {
@@ -31,18 +32,18 @@ const submit = () => {
 
 <template>
     <!-- Form -->
-    <form @submit.prevent="submit" class="bg-white max-w-2xl mx-auto">
+    <form @submit.prevent="submit" class="bg-white max-w-2xl mx-auto" enctype="multipart/form-data">
         <div class="grid md:grid-cols-2 md:gap-6">
             <div>
                 <TextInput
-                    nameInput="firstname"
-                    idInput="firstname"
-                    forLabel="firstname"
+                    nameInput="name"
+                    idInput="name"
+                    forLabel="name"
                     label="Digite o primeiro nome"
-                    v-model="form.firstname"
+                    v-model="form.name"
                 />
 
-                <InputError class="mt-2" :message="form.errors.firstname" />
+                <InputError class="mt-2" :message="form.errors.name" />
             </div>
 
             <div>
@@ -58,7 +59,7 @@ const submit = () => {
             </div>
 
             <div>
-                <TextInput
+                <TextInput 
                     typeInput="email"
                     nameInput="email"
                     idInput="email"
@@ -82,33 +83,6 @@ const submit = () => {
                 <InputError class="mt-2" :message="form.errors.phone" />
             </div>
 
-            <div>
-                <PriceInput
-                    nameInput="salary"
-                    idInput="salary"
-                    forLabel="salary"
-                    label="Digite o salário"
-                    v-model="form.salary"
-                />
-
-                <InputError class="mt-2" :message="form.errors.salary" />
-            </div>
-
-            <div>
-                <SelectInput 
-                    nameSelect="position"
-                    idSelect="position"
-                    forLabel="position"
-                    label="Escolha o cargo"
-                    v-model="form.position"
-                >
-                    <option selected>Selecione um cargo</option>
-                    <option value="1">Gerente</option>
-                </SelectInput>
-
-                <InputError class="mt-2" :message="form.errors.position" />
-            </div>
-            
             <div>
                 <ZipcodeInput
                     nameInput="zipcode"
@@ -182,11 +156,60 @@ const submit = () => {
             </div>
         </div>
 
+        <div>
+            <p class="text-base text-gray-700 mt-2 dark:text-white">Imagem RG</p>
+            <ImageInput
+                type="file"
+                forLabel="identification"
+                idInput="identification"
+                textSpan="Clique para carregar imagem"
+                typeFile="SVG, PNG, JPG"
+                v-model="form.identification"
+            />
+
+            <InputError class="mt-2" :message="form.errors.identification" />
+        </div>
+
+        <div>
+            <p class="text-base text-gray-700 mt-4 dark:text-white">Imagem comprovante de endereço</p>
+            <ImageInput
+                type="file"
+                forLabel="address"
+                idInput="address"
+                textSpan="Clique para carregar imagem"
+                typeFile="SVG, PNG, JPG"
+                v-model="form.address"
+            />
+
+            <InputError class="mt-2" :message="form.errors.address" />
+        </div>
+
+        <div>
+            <p class="text-base text-gray-700 mt-4 dark:text-white">Imagens comprovante de renda</p>
+            <ImageInput
+                type="file"
+                forLabel="proof"
+                idInput="proof"
+                textSpan="Clique para carregar imagens"
+                typeFile="SVG, PNG, JPG"
+                multiple
+                v-model="form.proof"
+            />
+
+            <InputError class="mt-2" :message="form.errors.proof" />
+        </div>
+
+        <TextareaInput
+            label="Observações do cliente aqui..."
+            rows="4"
+            v-model="form.description"
+        />
+
         <div class="mt-4">
             <CreateCustomerButton
                 :class="{ 'opacity-25': form.processing }"
                 :disabled="form.processing"
-                valueButton="Cadastrar"
+                valueButton="Salvar"
             />
         </div>
     </form>

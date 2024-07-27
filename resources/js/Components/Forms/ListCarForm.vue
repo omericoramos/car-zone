@@ -267,6 +267,7 @@ onMounted(() => {
         </div>
 
         <div>
+
             <p class="text-base text-gray-700 mt-2 dark:text-white">Imagens do carro</p>
             <ImageInput
                 type="file"
@@ -307,7 +308,7 @@ onMounted(() => {
             <CreateCustomerButton
             :class="{ 'opacity-25': form.processing }"
             :disabled="form.processing"
-            valueButton="Cadastrar"
+            valueButton="Salvar"
         />
         </div>
     </form>

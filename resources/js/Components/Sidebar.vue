@@ -1,6 +1,7 @@
 <script setup>
 import HomeIcon from '@/Components/Icons/HomeIcon.vue';
 import FoldersIcon from '@/Components/Icons/FoldersIcon.vue';
+import RetanglesIcon from '@/Components/Icons/RetanglesIcon.vue';
 import AccordionButton from '@/Components/Accordion/AccordionButton.vue';
 import { Link } from '@inertiajs/vue3';
 
@@ -15,12 +16,12 @@ import { Link } from '@inertiajs/vue3';
         <div class="h-full px-2 pb-4 overflow-y-auto overflow-x-hidden bg-white dark:bg-gray-800">
             <ul class="space-y-2 font-medium">
                 <li>
-                    <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <p class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <HomeIcon class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
                         <Link :href="route('dashboard')" class="ms-7">
                             Home
                         </Link>
-                    </a>
+                    </p>
                 </li>
 
                 <li>
@@ -33,6 +34,33 @@ import { Link } from '@inertiajs/vue3';
                                 spanTitle="Cadastrar"
                             />
                         </p>
+                    </p>
+                </li>
+
+                <li>
+                    <p class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <RetanglesIcon class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
+                        <Link :href="route('cars.list')" class="ms-7">
+                            Carros
+                        </Link>
+                    </p>
+                </li>
+
+                <li>
+                    <p class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <RetanglesIcon class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
+                        <Link :href="route('customers.list')" class="ms-7">
+                            Clientes
+                        </Link>
+                    </p>
+                </li>
+
+                <li>
+                    <p class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <RetanglesIcon class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
+                        <Link :href="route('employees.list')" class="ms-7">
+                            Funcionários
+                        </Link>
                     </p>
                 </li>
             </ul>

@@ -13,7 +13,7 @@ class EmployerController extends Controller
 
     public function index()
     {
-        return view('employees.index');
+        return Inertia::render('Employees/List');
     }
 
     public function create()

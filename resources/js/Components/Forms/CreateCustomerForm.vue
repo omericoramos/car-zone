@@ -7,7 +7,7 @@ import ZipcodeInput from '@/Components/Inputs/ZipcodeInput.vue';
 import ImageInput from '@/Components/Inputs/ImageInput.vue';
 import TextareaInput from '@/Components/Inputs/TextareaInput.vue';
 import CreateCustomerButton from '@/Components/Buttons/CreateCustomerButton.vue';
-import { Head, Link, useForm } from '@inertiajs/vue3';
+import { useForm } from '@inertiajs/vue3';
 
 const form = useForm({
     name: '',
@@ -206,7 +206,11 @@ const submit = () => {
         />
 
         <div class="mt-4">
-            <CreateCustomerButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing" />
+            <CreateCustomerButton
+                :class="{ 'opacity-25': form.processing }"
+                :disabled="form.processing"
+                valueButton="Cadastrar"
+            />
         </div>
     </form>
 </template>

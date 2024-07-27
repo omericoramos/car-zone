@@ -186,7 +186,7 @@ const submit = () => {
             <CreateCustomerButton
                 :class="{ 'opacity-25': form.processing }"
                 :disabled="form.processing"
-                valueButton="Cadastrar"
+                valueButton="Salvar"
             />
         </div>
     </form>

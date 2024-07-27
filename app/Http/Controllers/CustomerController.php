@@ -13,7 +13,7 @@ class CustomerController extends Controller
 
     public function index()
     {
-        return view('customers.list');
+        return Inertia::render('Customers/List');
     }
 
     public function create()
